@@ -36,7 +36,9 @@ public class Robot extends IterativeRobot {
     //SmartDashboard
     Preferences pref;
     
-    
+    //Double
+    Double LY;
+    Double RY;
     
     
     /**
@@ -86,20 +88,32 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	Double SpeedControal = 4.0;
+    	
+    	if(joy.getRawAxis(1)>0.1 || joy.getRawAxis(1)<-0.1){		
+            LY = joy.getRawAxis(1);
+        }	
+        else{
+            LY = 0.0 ;	
+        }	
+    	if(joy.getRawAxis(5)>0.1 || joy.getRawAxis(5)<-0.1){		
+            RY = joy.getRawAxis(5);
+        }	
+        else{
+            RY = 0.0 ;	
+        }	
     	if(left.get()){
-    		motor_left.set(joy.getRawAxis(1)/SpeedControal);                     	
+    		motor_left.set(LY/SpeedControal);                     	
     	}	
     	else {
-    		motor_left.set(joy.getRawAxis(1)/(SpeedControal*2));
+    		motor_left.set(LY/(SpeedControal*2));
     	}
     	
     	if(right.get()){
-    		motor_right.set(-joy.getRawAxis(5)/SpeedControal);                     	
+    		motor_right.set(-RY/SpeedControal);                     	
     	}	
     	else {
-    		motor_right.set(-joy.getRawAxis(5)/(SpeedControal*2));
+    		motor_right.set(-RY/(SpeedControal*2));
     	}
-        //Timer.delay(500);
 
     	SmartDashboard.putNumber("Left Motor Encoder Value", -motor_left.get());
     	SmartDashboard.putNumber("Right Motor Encoder Value", motor_right.get());
