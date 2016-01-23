@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
         chooser.addDefault("Default Auto", defaultAuto);
         chooser.addObject("My Auto", customAuto);
         SmartDashboard.putData("Auto choices", chooser);
-        pref.getDouble("SpeedControal", 4.0);
+        pref.getDouble("SpeedControal", 5.0);
     }
     
 	/**
