@@ -62,8 +62,13 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto choices", chooser);
         pref.getDouble("SpeedControal", 5.0);
         
+        //Camera
+        img = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+        cam.openCamera();
         cam.getImage(img);
         cam.startCapture();
+        
+        
     }
     
 	/**
