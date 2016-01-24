@@ -3,6 +3,12 @@ package org.usfirst.frc.team6083.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.DrawMode;
+import com.ni.vision.NIVision.Image;
+import com.ni.vision.NIVision.ShapeMode;
+
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.vision.USBCamera;
@@ -40,7 +46,8 @@ public class Robot extends IterativeRobot {
     Preferences pref;
     
     //camera
-    USBCamera cam = new USBCamera("WEBCAMERA");
+
+
     
     
     /**
@@ -54,8 +61,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto choices", chooser);
         pref.getDouble("SpeedControal", 5.0);
         
-        cam.openCamera();
 
+        
     }
     
 	/**
