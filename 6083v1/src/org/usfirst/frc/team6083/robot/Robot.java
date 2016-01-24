@@ -11,7 +11,7 @@ import com.ni.vision.NIVision.ShapeMode;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.vision.USBCamera;
+import edu.wpi.first.wpilibj.vision.*;
 
 
 
@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
     Preferences pref;
     
     //camera
-    USBCamera cam = new USBCamera("cam0");
+    USBCamera cam = new USBCamera("cam1");
     Image img;
 
     
@@ -63,6 +63,7 @@ public class Robot extends IterativeRobot {
         pref.getDouble("SpeedControal", 5.0);
         
         cam.getImage(img);
+        cam.startCapture();
     }
     
 	/**
