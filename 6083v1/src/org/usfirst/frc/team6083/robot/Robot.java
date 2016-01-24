@@ -46,8 +46,8 @@ public class Robot extends IterativeRobot {
     Preferences pref;
     
     //camera
-    int session;
-    Image frame;
+    USBCamera cam = new USBCamera("cam0");
+    Image img;
 
     
     
@@ -62,13 +62,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto choices", chooser);
         pref.getDouble("SpeedControal", 5.0);
         
-        frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-
-        // the camera name (ex "cam0") can be found through the roborio web interface
-        session = NIVision.IMAQdxOpenCamera("cam0",
-                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-        NIVision.IMAQdxConfigureGrab(session);
-        
+        cam.getImage(img);
     }
     
 	/**
@@ -106,26 +100,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
 
-    	NIVision.IMAQdxStartAcquisition(session);
 
-        /**
-         * grab an image, draw the circle, and provide it for the camera server
-         * which will in turn send it to the dashboard.
-         */
-        NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
-
-        while (isOperatorControl() && isEnabled()) {
-
-            NIVision.IMAQdxGrab(session, frame, 1);
-            NIVision.imaqDrawShapeOnImage(frame, frame, rect,
-                    DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
-            
-            CameraServer.getInstance().setImage(frame);
-
-            /** robot code here! **/
-            Timer.delay(0.005);		// wait for a motor update time
-        }
-        NIVision.IMAQdxStopAcquisition(session);
     	
     	Double SpeedControal = 4.0;
     	if(left.get()){
