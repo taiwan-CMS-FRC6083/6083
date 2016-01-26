@@ -123,6 +123,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("LY value", joy.getRawAxis(1));
     	SmartDashboard.putNumber("RY value", joy.getRawAxis(5));
     	SmartDashboard.putNumber("PDP Voltage", pdp.getVoltage());
+    	SmartDashboard.putNumber("PDP Power", pdp.getTotalPower());
     }
     
     /**
