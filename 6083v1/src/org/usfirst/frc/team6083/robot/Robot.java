@@ -4,6 +4,7 @@ package org.usfirst.frc.team6083.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.*;
 
 import com.ni.vision.NIVision;
@@ -32,7 +33,7 @@ public class Robot extends IterativeRobot {
     VictorSP motor_left = new VictorSP(0);
     VictorSP motor_right = new VictorSP(1);
     
-    //Joystick
+    
     Joystick joy = new Joystick(0);
     
     //JoystickButton
@@ -76,23 +77,7 @@ public class Robot extends IterativeRobot {
     
 	
     public void autonomousInit() {
-    	
-    	//Double
-    	Double SpeedControal = 2.0;
-    	
-    	//motor control
-    	motor_left.set(-LY/SpeedControal);
-    	motor_right.set(RY/SpeedControal);
-    	
-    	//Timer
-    	Timer.delay(500);
-    	
-    	//motor control
-    	motor_left.set(-LY/-SpeedControal);
-    	motor_right.set(RY/-SpeedControal);
-    	
-    	//Timer
-    	Timer.delay(500);
+    
     }
     /**
      * This function is called periodically during operator control
@@ -113,7 +98,6 @@ public class Robot extends IterativeRobot {
                              (frame, frame, rect,DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
             CameraServer.getInstance().setImage(frame);
 
-            
             if(joy.getRawAxis(1)>0.1 || joy.getRawAxis(1)<-0.1){		
                 LY = joy.getRawAxis(1);
              }	
@@ -128,31 +112,20 @@ public class Robot extends IterativeRobot {
                 RY = 0.0 ;	
              }	
          	 
-             
-             if(!left.get()){
+             if(LB.get()){
                motor_left.set(-LY/(SpeedControal*2));                     	
              }	
              else {
          	   motor_left.set(-LY/SpeedControal);
              }
          	
-             if(!right.get()){
+             if(RB.get()){
                motor_right.set(RY/(SpeedControal*2));                     	
              }	
              else {
          	   motor_right.set(RY/SpeedControal);
         	    }
          	
-             
-             if(LB.get()){
-         	   motor_left.set(-LY/(SpeedControal*1.5));
-         	   motor_right.set(RY/SpeedControal);
-             }
-             if(RB.get()){
-         	   motor_left.set(-LY/SpeedControal);
-         	   motor_right.set(RY/(SpeedControal*1.5));
-             } 
-             
              //SmartDashboard
          	 SmartDashboard.putNumber("Left Motor Encoder Value", -motor_left.get());
          	 SmartDashboard.putNumber("Right Motor Encoder Value", motor_right.get());
