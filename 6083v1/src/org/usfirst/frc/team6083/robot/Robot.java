@@ -113,7 +113,7 @@ public class Robot extends IterativeRobot {
                              (frame, frame, rect,DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
             CameraServer.getInstance().setImage(frame);
 
-            //誤差值
+            
             if(joy.getRawAxis(1)>0.1 || joy.getRawAxis(1)<-0.1){		
                 LY = joy.getRawAxis(1);
              }	
@@ -128,7 +128,7 @@ public class Robot extends IterativeRobot {
                 RY = 0.0 ;	
              }	
          	 
-             //加速控制
+             
              if(!left.get()){
                motor_left.set(-LY/(SpeedControal*2));                     	
              }	
@@ -143,7 +143,7 @@ public class Robot extends IterativeRobot {
          	   motor_right.set(RY/SpeedControal);
         	    }
          	
-             //轉彎
+             
              if(LB.get()){
          	   motor_left.set(-LY/(SpeedControal*1.5));
          	   motor_right.set(RY/SpeedControal);
@@ -167,56 +167,7 @@ public class Robot extends IterativeRobot {
          	 Timer.delay(0.0005);	// wait for a motor update time
         }
     	
-       /*   //誤差值
-            if(joy.getRawAxis(1)>0.1 || joy.getRawAxis(1)<-0.1){		
-                LY = joy.getRawAxis(1);
-             }	
-             else{
-                LY = 0.0 ;	
-             }	
-         
-             if(joy.getRawAxis(5)>0.1 || joy.getRawAxis(5)<-0.1){		
-                RY = joy.getRawAxis(5);
-             }	
-             else{
-                RY = 0.0 ;	
-             }	
-         	 
-             //加速控制
-             if(!left.get()){
-                motor_left.set(-LY/(SpeedControal*2));                     	
-             }	
-             else {
-         	   motor_left.set(-LY/SpeedControal);
-             }
-         	
-             if(!right.get()){
-               motor_right.set(RY/(SpeedControal*2));                     	
-             }	
-             else {
-         	   motor_right.set(RY/SpeedControal);
-        	    }
-         	
-             //轉彎
-             if(LB.get()){
-         	   motor_left.set(-LY/(SpeedControal*1.5));
-         	   motor_right.set(RY/SpeedControal);
-             }
-             if(RB.get()){
-         	   motor_left.set(-LY/SpeedControal);
-         	   motor_right.set(RY/(SpeedControal*1.5));
-             } 
-             
-             //SmartDashboard
-         	 SmartDashboard.putNumber("Left Motor Encoder Value", -motor_left.get());
-         	 SmartDashboard.putNumber("Right Motor Encoder Value", motor_right.get());
-         	 SmartDashboard.putNumber("speed", (-motor_left.get()+ motor_right.get())/2);
-         	 SmartDashboard.putNumber("speed plot", (-motor_left.get()+ motor_right.get())/2);
-         	 SmartDashboard.putNumber("LY value", joy.getRawAxis(1));
-         	 SmartDashboard.putNumber("RY value", joy.getRawAxis(5));
-         	 SmartDashboard.putNumber("PDP Voltage", pdp.getVoltage());
-            
-    	 */ 	
+       
     }
     
     /**
