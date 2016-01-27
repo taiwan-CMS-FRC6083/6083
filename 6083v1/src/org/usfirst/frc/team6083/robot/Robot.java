@@ -98,7 +98,7 @@ public class Robot extends SampleRobot {
         	SmartDashboard.putNumber("Speed Plot", (-talon_left.get()+ talon_right.get())/2);
         	SmartDashboard.putNumber("LY value", joy.getRawAxis(1));
         	SmartDashboard.putNumber("RY value", joy.getRawAxis(5));
-        	SmartDashboard.putNumber("PDP Voltage", pdp.getTotalPower());
+        	SmartDashboard.putNumber("PDP Voltage", pdp.getVoltage());
          	
             
             
