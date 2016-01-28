@@ -126,7 +126,7 @@ public class Robot extends IterativeRobot {
             CameraServer.getInstance().setImage(frame);
 
             /** robot code here! **/
-        	Double SpeedControal = 4.0;
+        	Double SpeedControal = 2.0;
         	
         	if(joy.getRawAxis(1)>0.1 || joy.getRawAxis(1)<-0.1){		
                 LY = joy.getRawAxis(1);
@@ -161,7 +161,6 @@ public class Robot extends IterativeRobot {
         	SmartDashboard.putNumber("LY value", joy.getRawAxis(1));
         	SmartDashboard.putNumber("RY value", joy.getRawAxis(5));
         	SmartDashboard.putNumber("PDP Voltage", pdp.getVoltage());
-            //Timer.delay(0.005);		// wait for a motor update time
         }
         NIVision.IMAQdxStopAcquisition(session);
     	
