@@ -67,6 +67,7 @@ public class Robot extends IterativeRobot {
         server.startAutomaticCapture(cam);
         
         
+        
     }
     
 	/**
