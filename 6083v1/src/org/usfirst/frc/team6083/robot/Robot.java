@@ -35,8 +35,8 @@ public class Robot extends IterativeRobot {
     
     //Joystick
     Joystick joy = new Joystick(0);
-    JoystickButton left = new JoystickButton(joy,9);
-    JoystickButton right = new JoystickButton(joy,10);
+    JoystickButton left = new JoystickButton(joy,5);
+    JoystickButton right = new JoystickButton(joy,6);
     
     //Device
     PowerDistributionPanel pdp = new PowerDistributionPanel(1);
