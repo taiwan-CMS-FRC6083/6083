@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
     //camera
     USBCamera cam = new USBCamera("cam1");
     Image img;
-
+    CameraServer server;
     
     
     /**
@@ -64,9 +64,7 @@ public class Robot extends IterativeRobot {
         
         //Camera
         img = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-        cam.openCamera();
-        cam.getImage(img);
-        cam.startCapture();
+        server.startAutomaticCapture(cam);
         
         
     }
