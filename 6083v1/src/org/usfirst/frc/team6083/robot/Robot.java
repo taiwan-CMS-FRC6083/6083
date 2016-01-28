@@ -48,7 +48,10 @@ public class Robot extends IterativeRobot {
     //camera
     int session;
     Image frame;
-
+    
+    //Double
+    Double LY;
+    Double RY;
     
     
     /**
@@ -123,33 +126,45 @@ public class Robot extends IterativeRobot {
             CameraServer.getInstance().setImage(frame);
 
             /** robot code here! **/
+        	Double SpeedControal = 4.0;
+        	
+        	if(joy.getRawAxis(1)>0.1 || joy.getRawAxis(1)<-0.1){		
+                LY = joy.getRawAxis(1);
+            }	
+            else{
+                LY = 0.0 ;	
+            }	
+        	if(joy.getRawAxis(5)>0.1 || joy.getRawAxis(5)<-0.1){		
+                RY = joy.getRawAxis(5);
+            }	
+            else{
+                RY = 0.0 ;	
+            }	
+        	if(left.get()){
+        		motor_left.set(LY/SpeedControal);                     	
+        	}	
+        	else {
+        		motor_left.set(LY/(SpeedControal*2));
+        	}
+        	
+        	if(right.get()){
+        		motor_right.set(-RY/SpeedControal);                     	
+        	}	
+        	else {
+        		motor_right.set(-RY/(SpeedControal*2));
+        	}
+
+        	SmartDashboard.putNumber("Left Motor Encoder Value", -motor_left.get());
+        	SmartDashboard.putNumber("Right Motor Encoder Value", motor_right.get());
+        	SmartDashboard.putNumber("spSpeedControaleed", (-motor_left.get()+ motor_right.get())/2);
+        	SmartDashboard.putNumber("Speed Plot", (-motor_left.get()+ motor_right.get())/2);
+        	SmartDashboard.putNumber("LY value", joy.getRawAxis(1));
+        	SmartDashboard.putNumber("RY value", joy.getRawAxis(5));
+        	SmartDashboard.putNumber("PDP Voltage", pdp.getVoltage());
             Timer.delay(0.005);		// wait for a motor update time
         }
         NIVision.IMAQdxStopAcquisition(session);
     	
-    	Double SpeedControal = 4.0;
-    	if(left.get()){
-    		motor_left.set(joy.getRawAxis(1)/SpeedControal);                     	
-    	}	
-    	else {
-    		motor_left.set(joy.getRawAxis(1)/(SpeedControal*2));
-    	}
-    	
-    	if(right.get()){
-    		motor_right.set(-joy.getRawAxis(5)/SpeedControal);                     	
-    	}	
-    	else {
-    		motor_right.set(-joy.getRawAxis(5)/(SpeedControal*2));
-    	}
-        //Timer.delay(500);
-
-    	SmartDashboard.putNumber("Left Motor Encoder Value", -motor_left.get());
-    	SmartDashboard.putNumber("Right Motor Encoder Value", motor_right.get());
-    	SmartDashboard.putNumber("spSpeedControaleed", (-motor_left.get()+ motor_right.get())/2);
-    	SmartDashboard.putNumber("Speed Plot", (-motor_left.get()+ motor_right.get())/2);
-    	SmartDashboard.putNumber("LY value", joy.getRawAxis(1));
-    	SmartDashboard.putNumber("RY value", joy.getRawAxis(5));
-    	SmartDashboard.putNumber("PDP Voltage", pdp.getVoltage());
     }
     
     /**
