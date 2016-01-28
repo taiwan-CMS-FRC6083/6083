@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
         pref.getDouble("SpeedControal", 5.0);
         
         //Camera
-        img = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+
         server.startAutomaticCapture(cam);
         
         
